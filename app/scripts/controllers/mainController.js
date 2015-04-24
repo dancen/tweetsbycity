@@ -209,7 +209,7 @@
 
             $scope.initHistory = function (city, id) {
 
-
+                $scope.search_location = city;
                 var geocoder = new google.maps.Geocoder();
 
                 geocoder.geocode({"address": city}, function (results, status) {
@@ -331,49 +331,25 @@
 
             $scope.startService = function () {
 
-                // get the client data using the rest service from http://ipinfo.io/json
-                var call = ServiceFactory.ClientDataService().getClientData();
+
+                var call = ServiceFactory.LocationByIpService().getLocationByIp();
                 call.success(function (data) {
 
-                    try {
+                    var json = JSON.parse(data);
 
-                        AppFactory.timeout()(function () {
-                            $scope.start_city = data.city;
-                            console.log(data);
-                            $scope.init();
+                    AppFactory.timeout()(function () {
 
-                        }, forcedTimeoutLoader);
-
-                    } catch (e) {
-                        console.log("error ClientDataService " + e);
+                        $scope.start_city = json.results[1].address_components[1].long_name;
+                        $scope.init();
                         $scope.stopLoader();
-                    }
 
-                }).error(function (error) {
+                    }, forcedTimeoutLoader);
 
 
-                    // in case the http://ipinfo.io/json is not available
-                    // a customized service will be executed by using
-                    // the server as a proxy
-                    var call = ServiceFactory.LocationByIpService().getLocationByIp();
-                    call.success(function (data) {
-
-                        var json = JSON.parse(data);
-
-                        AppFactory.timeout()(function () {
-
-                            $scope.start_city = json.results[1].address_components[1].long_name;
-                            $scope.init();
-
-                        }, forcedTimeoutLoader);
-
-                    }).error(function (data) {
-                        console.log("error startService");
-                    });
-
-                    console.log("error ClientDataService");
-                    $scope.stopLoader();
+                }).error(function (data) {
+                    console.log("error startService");
                 });
+
 
 
             };
