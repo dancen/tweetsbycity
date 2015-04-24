@@ -1,0 +1,27 @@
+<section id="history">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">History!</h2>
+                <hr class="primary">
+                                
+                <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>City</th>
+                                        <th>Date</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="h in history" ng-model="history">                                        
+                                        <td class="history-location"><a href="#orders" class="btn" ng-click="initHistory(h.location, h.id)">{{ h.location}}</a></td>
+                                        <td class="history-location">{{ h.created_at.date | date:'medium'}}</td>
+                                   </tr> 
+                                </tbody>
+                            </table>
+                
+            </div>
+
+        </div>
+    </div>
+</section>
