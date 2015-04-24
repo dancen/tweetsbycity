@@ -193,9 +193,6 @@
 
 
 
-
-
-
             /**
              * this method creates an instance of google.maps.Geocoder in order
              * to retrieve latitude and longitude by the city selected by

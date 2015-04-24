@@ -9,7 +9,6 @@
 
 
 
-
 // MODULE TO MANAGE SERVICES
     var clientDataService = angular.module('clientDataService', []);
 

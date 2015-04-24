@@ -8,8 +8,6 @@
 (function() {
 
 
-
-
 // MODULE TO MANAGE SERVICES
     var mainService = angular.module('mainService', [])
                 .constant('TWEETS_HISTORY', "http://localhost/portofinoApi/web/app_dev.php/tweets/history")

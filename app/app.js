@@ -7,7 +7,6 @@
 
 (function () {
 
-
     // main module
     var tweetsApp = angular.module('tweetsApp', ["ngRoute",
         'mainController',       

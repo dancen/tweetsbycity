@@ -11,7 +11,6 @@
 // MODULE TO MANAGE FILTERS
     var mainFilter = angular.module('mainFilter', []); 
     
-    
   
 
 })();
